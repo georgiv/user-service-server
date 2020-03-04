@@ -1,0 +1,16 @@
+type: google.api.Service
+
+config_version: 3
+
+http:
+  rules:
+  - selector: proto.UsersHandler.Create
+    post: /api/users
+    body: "user"
+  - selector: proto.UsersHandler.Get
+    get: /api/users/{name}
+  - selector: proto.UsersHandler.Update
+    patch: /api/users/{user.name}
+    body: "user"
+  - selector: proto.UsersHandler.Delete
+    delete: /api/users/{name}

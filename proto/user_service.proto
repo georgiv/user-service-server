@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package proto;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/field_mask.proto";
+
+service UsersHandler {
+    rpc Create(CreateUserRequest) returns (User);
+    rpc Get(GetUserRequest) returns (User);
+    rpc Update(UpdateUserRequest) returns (User);
+    rpc Delete(DeleteUserRequest) returns (google.protobuf.Empty);
+}
+
+message User {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+    string avatar = 4;
+    int64 creation_time = 5;
+    int64 last_login_time = 6;
+}
+
+message CreateUserRequest {
+    User user = 1;
+}
+
+message GetUserRequest {
+    string name = 1;
+}
+
+message UpdateUserRequest {
+    User user = 1;
+    google.protobuf.FieldMask update_mask = 2;
+}
+
+message DeleteUserRequest {
+    string name = 1;
+}
